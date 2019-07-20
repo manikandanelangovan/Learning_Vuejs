@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>VueJS Learning</title>
+    <link rel="stylesheet" href="" />
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <button v-on:click="counter++">Increase</button>
+      <button v-on:click="counter--">Decrease</button>
+      <button v-on:click="secondCounter++">Increase Second</button>
+      <p>Counter : {{ counter }} | SecondCounter: {{ secondCounter }}</p>
+      <p>Result : {{ result() }} | {{ output }}</p>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          counter: 0,
+          secondCounter: 0
+        },
+        /*
+        Computed
+        This is used to do some calculation on dependent properties and update the UI whenever the properties
+        changes, it caches the result and update only whenever the cached computed value differ from 
+        the current value.
+        */
+        computed: {
+          output: function() {
+            console.log("computed");
+            return this.counter > 5 ? "Greater 5" : "Smaller than 5";
+          }
+        },
+        /*
+        Watch
+        To watch the property changes and update 
+        function name should be name of the property need to be watched for every changes
+        */
+        watch: {
+            counter: function(value) {
+                console.log('Watched');
+                var vm = this;
+                setTimeout(function() {
+                    vm.counter = 0;
+                }, 2000);
+            }
+        },
+        methods: {
+          result: function() {
+            console.log("Method");
+            return this.counter > 5 ? "Greater 5" : "Smaller than 5";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
