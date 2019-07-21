@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>VueJS Learning</title>
+    <link rel="stylesheet" href="" />
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- v-on = @,  v-bind = : -->
+      <button @click="changeLink">Click to change link</button>
+      <br>
+      <a :href="link">Link</a>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          link: 'http://google.com',
+        },
+        methods: {
+          changeLink: function() {
+            this.link = 'http://apple.com'
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
